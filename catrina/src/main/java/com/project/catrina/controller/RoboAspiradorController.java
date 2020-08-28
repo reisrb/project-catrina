@@ -1,6 +1,8 @@
 package com.project.catrina.controller;
 
 import com.project.catrina.model.Aspirador;
+import com.project.catrina.model.GerenciadorDeAgenda;
+import com.project.catrina.model.Robo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,10 +12,16 @@ import java.util.List;
 @RequestMapping("/roboAspirador")
 public class RoboAspiradorController {
 
-    List<Aspirador> aspiradorList = new ArrayList<>();
+    List<Robo> aspiradorList = new ArrayList<>();
 
     @GetMapping
-    public List<Aspirador> getAspiradorList() {
+    public List<Robo> getAspiradorList() {
+        Robo r1 = new Aspirador(1, "robson", 5.2, 100, 5);
+
+        if (aspiradorList.isEmpty()) {
+            aspiradorList.add(r1);
+        }
+
         return aspiradorList;
     }
 
@@ -24,17 +32,17 @@ public class RoboAspiradorController {
             aspiradorList.add(aspirador);
             return "robô adicionado";
         }else{
-            for (Aspirador a : aspiradorList) {
-                if( aspirador.getId() != a.getId()){
+            for (Robo r : aspiradorList) {
+                if( aspirador.getId() != r.getId()){
                     aspiradorList.add(aspirador);
                     return "robô adicionado";
                 }
             }
         }
 
-        for (Aspirador a: aspiradorList) {
-            if( aspirador.getId() == a.getId()){
-                return "Essa identificação de robô já está em nossa base de dados como:\n" + a;
+        for (Robo r: aspiradorList) {
+            if( aspirador.getId() == r.getId()){
+                return "Essa identificação de robô já está em nossa base de dados como:\n" + r;
             }
         }
 
@@ -44,10 +52,10 @@ public class RoboAspiradorController {
     @PutMapping("/alterar/{id}")
     public String alterarRobo(@RequestBody Aspirador aspirador, @PathVariable int id){
 
-        for (Aspirador a: aspiradorList) {
-            if(a.getId() == id){
-                aspiradorList.set(aspiradorList.indexOf(a), aspirador);
-                return "Robô alterado com sucesso! Dados antigos: \n" + a;
+        for (Robo r : aspiradorList) {
+            if(r.getId() == id){
+                aspiradorList.set(aspiradorList.indexOf(r), aspirador);
+                return "Robô alterado com sucesso! Dados antigos: \n" + r;
             }
         }
 
@@ -57,9 +65,9 @@ public class RoboAspiradorController {
     @DeleteMapping("/deletar/{id}")
     public String deletarRobo(@PathVariable int id){
 
-        for (Aspirador a : aspiradorList) {
-            if(a.getId() == id){
-                aspiradorList.remove(aspiradorList.indexOf(a));
+        for (Robo r : aspiradorList) {
+            if(r.getId() == id){
+                aspiradorList.remove(aspiradorList.indexOf(r));
                 return "Robo deletado com sucesso";
             }
 
@@ -69,9 +77,9 @@ public class RoboAspiradorController {
 
     @PostMapping("{id}/aspirar/{horasLigado}")
     public String aspirarCasa(@PathVariable int horasLigado, @PathVariable int id){
-        for (Aspirador a: aspiradorList) {
-            if(a.getId() == id){
-                return a.aspirar(horasLigado);
+        for (Robo r: aspiradorList) {
+            if(r.getId() == id){
+                return ((Aspirador) r).aspirar(horasLigado);
             }
         }
 
@@ -80,9 +88,9 @@ public class RoboAspiradorController {
 
     @PostMapping("/recarregarBateria/{id}")
     public String recarregarBateria(@PathVariable int id){
-        for (Aspirador a : aspiradorList) {
-            if(a.getId() == id){
-                return "Percentual carregado! " + a.recarregarEnergia();
+        for (Robo r : aspiradorList) {
+            if(r.getId() == id){
+                return "Percentual carregado! " + r.recarregarEnergia();
             }
         }
         return "Robô não cadastrado!";
