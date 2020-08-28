@@ -15,27 +15,50 @@ public class GerenciadorDeAgenda extends Robo {
         compromissosList = new ArrayList<Compromissos>();
     }
 
-    public String criarLembrete(Compromissos compromissos){
-        compromissosList.add(compromissos);
+    public String criarLembrete(Compromissos compromissos) {
+        boolean existe = false;
 
-        if(getBateria() - getPotencia() > 0){
-            setBateria(getBateria() - getPotencia());
-
-            return "O lembrete '" + compromissos.getNome() + "' foi criado com sucesso! | Bateria atual: " + getBateria();
+        for (Compromissos c : compromissosList) {
+            if (c.getId() == compromissos.getId()) {
+                existe = true;
+            }
         }
+
+        if (!existe) {
+            compromissosList.add(compromissos);
+            if (getBateria() - getPotencia() > 0) {
+                setBateria(getBateria() - getPotencia());
+
+                return "O lembrete '" + compromissos.getNome() + "' foi criado com sucesso! | Bateria atual: " + getBateria();
+            }
+        } else {
+            return "O id do lembrete já existe";
+        }
+
 
         return "Sem bateria para executar essa ação!!";
     }
 
-    public List<Compromissos> exibirCompromissos(){
+    public String alterarLembrete(Compromissos compromissos, int idCompromisso){
+        for (Compromissos c : compromissosList) {
+            if (c.getId() == idCompromisso) {
+                compromissosList.set(compromissosList.indexOf(c), compromissos);
+                return "Compromisso alterado com sucesso! Nome do compromisso: \n" + compromissos.getNome();
+            }
+        }
+
+        return "Id do compromisso não existe!";
+    }
+
+    public List<Compromissos> exibirCompromissos() {
         return compromissosList;
     }
 
     public String recarregarEnergia() {
-        if(getBateria() < 100){
-            if(getBateria() >= 70){
+        if (getBateria() < 100) {
+            if (getBateria() >= 70) {
                 setBateria(100);
-            }else{
+            } else {
                 setBateria(getBateria() + 30);
             }
             return "Bateria atual: " + getBateria();
