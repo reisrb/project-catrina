@@ -50,7 +50,23 @@ public class GerenciadorDeAgenda extends Robo {
         return "Id do compromisso não existe!";
     }
 
+    public String deletarLembrete(int idCompromisso){
+        for (Compromissos c : compromissosList) {
+            if (c.getId() == idCompromisso){
+                compromissosList.remove(compromissosList.indexOf(c));
+                return "Compromisso excluido com sucesso!";
+            }
+        }
+
+        return "Id do compromisso não existe!";
+    }
+
     public List<Compromissos> exibirCompromissos() {
+        System.out.println(compromissosList.isEmpty());
+
+        if(compromissosList.isEmpty()){
+            compromissosList.add(new Compromissos(2, "dar banho no dogzão", "pegar o shampoo e acessorios"));
+        }
         return compromissosList;
     }
 
