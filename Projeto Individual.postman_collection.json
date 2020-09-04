@@ -42,15 +42,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/roboAspirador/cadastrarRobo",
+							"raw": "http://localhost:8080/roboAspirador",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"roboAspirador",
-								"cadastrarRobo"
+								"roboAspirador"
 							]
 						}
 					},
@@ -71,7 +70,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/roboAspirador/alterar/2",
+							"raw": "http://localhost:8080/roboAspirador/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -79,8 +78,7 @@
 							"port": "8080",
 							"path": [
 								"roboAspirador",
-								"alterar",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -101,7 +99,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/roboAspirador/deletar/2",
+							"raw": "http://localhost:8080/roboAspirador/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -109,8 +107,7 @@
 							"port": "8080",
 							"path": [
 								"roboAspirador",
-								"deletar",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -199,15 +196,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/limpaVidros/cadastrar",
+							"raw": "http://localhost:8080/limpaVidros",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"limpaVidros",
-								"cadastrar"
+								"limpaVidros"
 							]
 						}
 					},
@@ -228,7 +224,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/limpaVidros/deletar/2",
+							"raw": "http://localhost:8080/limpaVidros/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -236,7 +232,6 @@
 							"port": "8080",
 							"path": [
 								"limpaVidros",
-								"deletar",
 								"2"
 							]
 						}
@@ -280,7 +275,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/limpaVidros/alterar/1",
+							"raw": "http://localhost:8080/limpaVidros/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -288,7 +283,6 @@
 							"port": "8080",
 							"path": [
 								"limpaVidros",
-								"alterar",
 								"1"
 							]
 						}
@@ -356,15 +350,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/gerenciadorDeAgenda/cadastrar",
+							"raw": "http://localhost:8080/gerenciadorDeAgenda",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"gerenciadorDeAgenda",
-								"cadastrar"
+								"gerenciadorDeAgenda"
 							]
 						}
 					},
@@ -385,7 +378,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/gerenciadorDeAgenda/alterar/1",
+							"raw": "http://localhost:8080/gerenciadorDeAgenda/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -393,7 +386,6 @@
 							"port": "8080",
 							"path": [
 								"gerenciadorDeAgenda",
-								"alterar",
 								"1"
 							]
 						}
@@ -415,7 +407,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/gerenciadorDeAgenda/deletar/1",
+							"raw": "http://localhost:8080/gerenciadorDeAgenda/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -423,7 +415,6 @@
 							"port": "8080",
 							"path": [
 								"gerenciadorDeAgenda",
-								"deletar",
 								"1"
 							]
 						}

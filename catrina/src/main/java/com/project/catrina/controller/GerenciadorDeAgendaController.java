@@ -11,29 +11,22 @@ import java.util.List;
 public class GerenciadorDeAgendaController {
     List<Robo> gerenciadorDeAgendaList = new ArrayList<>();
 
+    public GerenciadorDeAgendaController() {
+        gerenciadorDeAgendaList.add(new GerenciadorDeAgenda(1, "robson", 5.2, 100, 5));
+    }
+
     @GetMapping
     public List<Robo> getGerenciadorDeAgendaList() {
-        Robo r1 = new GerenciadorDeAgenda(1, "robson", 5.2, 100, 5);
-
-        if (gerenciadorDeAgendaList.isEmpty()) {
-            gerenciadorDeAgendaList.add(r1);
-        }
-
         return gerenciadorDeAgendaList;
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     public String cadastrar(@RequestBody GerenciadorDeAgenda gerenciadorDeAgenda) {
 
-        if (gerenciadorDeAgendaList.isEmpty()) {
-            gerenciadorDeAgendaList.add(gerenciadorDeAgenda);
-            return "robô adicionado";
-        } else {
-            for (Robo r : gerenciadorDeAgendaList) {
-                if (gerenciadorDeAgenda.getId() != r.getId()) {
-                    gerenciadorDeAgendaList.add(gerenciadorDeAgenda);
-                    return "robô adicionado";
-                }
+        for (Robo r : gerenciadorDeAgendaList) {
+            if (gerenciadorDeAgenda.getId() != r.getId()) {
+                gerenciadorDeAgendaList.add(gerenciadorDeAgenda);
+                return "robô adicionado";
             }
         }
 
@@ -46,7 +39,7 @@ public class GerenciadorDeAgendaController {
         return "Houve uma falha nos dados!";
     }
 
-    @PutMapping("/alterar/{id}")
+    @PutMapping("/{id}")
     public String alterarRobo(@RequestBody GerenciadorDeAgenda gerenciadorDeAgenda, @PathVariable int id) {
 
         for (Robo r : gerenciadorDeAgendaList) {
@@ -59,7 +52,7 @@ public class GerenciadorDeAgendaController {
         return "Id do robô não existe!";
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public String deletarRobo(@PathVariable int id) {
 
         for (Robo r : gerenciadorDeAgendaList) {
@@ -102,7 +95,7 @@ public class GerenciadorDeAgendaController {
     }
 
     @PostMapping("{id}/alterarCompromisso/{idCompromisso}")
-    public String alterarCompromisso(@PathVariable int id, @PathVariable int idCompromisso, @RequestBody Compromissos compromissos){
+    public String alterarCompromisso(@PathVariable int id, @PathVariable int idCompromisso, @RequestBody Compromissos compromissos) {
 
         for (Robo r : gerenciadorDeAgendaList) {
             if (r.getId() == id) {
@@ -114,9 +107,9 @@ public class GerenciadorDeAgendaController {
     }
 
     @DeleteMapping("{id}/deletarCompromisso/{idCompromisso}")
-    public String deletarCompromisso(@PathVariable int id, @PathVariable int idCompromisso){
-        for (Robo r : gerenciadorDeAgendaList){
-            if(r.getId() == id){
+    public String deletarCompromisso(@PathVariable int id, @PathVariable int idCompromisso) {
+        for (Robo r : gerenciadorDeAgendaList) {
+            if (r.getId() == id) {
                 return ((GerenciadorDeAgenda) r).deletarLembrete(idCompromisso);
             }
         }

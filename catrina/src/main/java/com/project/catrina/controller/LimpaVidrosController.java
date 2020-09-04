@@ -15,34 +15,27 @@ public class LimpaVidrosController {
 
     List<Robo> limpaVidrosList = new ArrayList<>();
 
+    public LimpaVidrosController() {
+        limpaVidrosList.add(new LimpaVidros(1, "robson", 5.2, 100, 5));
+    }
+
     @GetMapping
-    public List<Robo> exibeTodos(){
-        Robo r1 = new LimpaVidros(1, "robson", 5.2, 100, 5);
-
-        if (limpaVidrosList.isEmpty()) {
-            limpaVidrosList.add(r1);
-        }
-
+    public List<Robo> exibeTodos() {
         return limpaVidrosList;
     }
 
-    @PostMapping("/cadastrar")
-    public String cadastrar(@RequestBody LimpaVidros limpaVidros){
+    @PostMapping
+    public String cadastrar(@RequestBody LimpaVidros limpaVidros) {
 
-        if(limpaVidrosList.isEmpty()){
-            limpaVidrosList.add(limpaVidros);
-            return "robô adicionado";
-        }else{
-            for (Robo r : limpaVidrosList) {
-                if( limpaVidros.getId() != r.getId()){
-                    limpaVidrosList.add(limpaVidros);
-                    return "robô adicionado";
-                }
+        for (Robo r : limpaVidrosList) {
+            if (limpaVidros.getId() != r.getId()) {
+                limpaVidrosList.add(limpaVidros);
+                return "robô adicionado";
             }
         }
 
-        for (Robo r: limpaVidrosList) {
-            if( limpaVidros.getId() == r.getId()){
+        for (Robo r : limpaVidrosList) {
+            if (limpaVidros.getId() == r.getId()) {
                 return "Essa identificação de robô já está em nossa base de dados como:\n" + r;
             }
         }
@@ -50,11 +43,11 @@ public class LimpaVidrosController {
         return "Houve uma falha nos dados!";
     }
 
-    @PutMapping("/alterar/{id}")
-    public String alterarRobo(@RequestBody LimpaVidros limpaVidros, @PathVariable int id){
+    @PutMapping("/{id}")
+    public String alterarRobo(@RequestBody LimpaVidros limpaVidros, @PathVariable int id) {
 
-        for (Robo r: limpaVidrosList) {
-            if(r.getId() == id){
+        for (Robo r : limpaVidrosList) {
+            if (r.getId() == id) {
                 limpaVidrosList.set(limpaVidrosList.indexOf(r), limpaVidros);
                 return "Robô alterado com sucesso! Dados antigos: \n" + r;
             }
@@ -63,11 +56,11 @@ public class LimpaVidrosController {
         return "Id do robô não existe!";
     }
 
-    @DeleteMapping("/deletar/{id}")
-    public String deletarRobo(@PathVariable int id){
+    @DeleteMapping("/{id}")
+    public String deletarRobo(@PathVariable int id) {
 
         for (Robo r : limpaVidrosList) {
-            if(r.getId() == id){
+            if (r.getId() == id) {
                 limpaVidrosList.remove(limpaVidrosList.indexOf(r));
                 return "Robo deletado com sucesso";
             }
@@ -77,10 +70,10 @@ public class LimpaVidrosController {
     }
 
     @PostMapping("{id}/limpar/{quantidadeVidros}")
-    public String limparVidro(@PathVariable int id, @PathVariable int quantidadeVidros){
+    public String limparVidro(@PathVariable int id, @PathVariable int quantidadeVidros) {
 
-        for (Robo r: limpaVidrosList) {
-            if(r.getId() == id){
+        for (Robo r : limpaVidrosList) {
+            if (r.getId() == id) {
                 return ((LimpaVidros) r).limparVidro(quantidadeVidros);
             }
         }
@@ -89,9 +82,9 @@ public class LimpaVidrosController {
     }
 
     @PostMapping("/recarregarBateria/{id}")
-    public String recarregarBateria(@PathVariable int id){
+    public String recarregarBateria(@PathVariable int id) {
         for (Robo r : limpaVidrosList) {
-            if(r.getId() == id){
+            if (r.getId() == id) {
                 return "Percentual carregado! " + r.recarregarEnergia();
             }
         }
